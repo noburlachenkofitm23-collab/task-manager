@@ -9,7 +9,6 @@ export default function App() {
   const [searchVisible, setSearchVisible] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  // Читаємо тему з LocalStorage при першому запуску (за замовчуванням - темна)
   const [isDarkMode, setIsDarkMode] = useState(() => {
     const savedTheme = localStorage.getItem('appTheme');
     return savedTheme !== null ? savedTheme === 'dark' : true;
@@ -24,7 +23,6 @@ export default function App() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [timeStr, setTimeStr] = useState('12:00');
 
-  // Зберігаємо тему в LocalStorage кожного разу, коли вона змінюється
   useEffect(() => {
     localStorage.setItem('appTheme', isDarkMode ? 'dark' : 'light');
   }, [isDarkMode]);
@@ -103,17 +101,16 @@ export default function App() {
   const completedTasks = tasks.filter(t => t.completed).length;
   const progressPercentage = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
 
-  // ОНОВЛЕНО: Кольори app та card поміняно місцями
   const theme = {
     app: isDarkMode ? 'bg-[#1F2528]' : 'bg-[#FFFFFF]',
     card: isDarkMode ? 'bg-[#293135]' : 'bg-[#F1F5F9]',
-    inner: isDarkMode ? 'bg-[#1F2528]' : 'bg-[#FFFFFF]', // Підлаштовано під новий фон картки
+    inner: isDarkMode ? 'bg-[#1F2528]' : 'bg-[#FFFFFF]',
     border: isDarkMode ? 'border-[#3A4449]' : 'border-[#E2E8F0]',
     textMain: isDarkMode ? 'text-[#F8FAFC]' : 'text-[#0F172A]',
     textSec: isDarkMode ? 'text-[#E2E8F0]' : 'text-[#334155]',
     textMuted: isDarkMode ? 'text-[#94A3B8]' : 'text-[#64748B]',
     textGhost: isDarkMode ? 'text-[#475569]' : 'text-[#94A3B8]',
-    completedCard: isDarkMode ? 'bg-[#1F2528] border-[#1F2528]' : 'bg-[#FFFFFF] border-[#FFFFFF]', // Збігається з новим app
+    completedCard: isDarkMode ? 'bg-[#1F2528] border-[#1F2528]' : 'bg-[#FFFFFF] border-[#FFFFFF]',
   };
 
   const priorityStyles = {
